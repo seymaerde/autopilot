@@ -62,11 +62,11 @@ Follow `to-spec` (read its file — see Phase 0) on the grilling transcript. Thr
 
 - **No new questions to the user** — anything still open becomes a PLACEHOLDER in the spec, not an interview.
 - **Skip the seams check.** `to-spec` asks the user to confirm the test seams; a vibecoder cannot judge seams. Pick them yourself and record them under Implementation Decisions.
-- **No git repo yet → `git init` here**, then commit the spec. It is the user's first rollback point, and every later commit needs a repo to land in.
+- **No git repo yet → `git init` here**, then commit the spec. It is the user's first rollback point, and every later commit needs a repo to land in. A vibecoder's machine usually has no git identity, and `git commit` hard-fails on that — check `git config user.email` and, if empty, set a repo-local one (`git config user.name` / `user.email`, never `--global`) before the first commit.
 
 ### Phase 3 — Tickets
 
-Follow `to-tickets` (read its file), with one override: **skip the user quiz** — a vibecoder cannot judge granularity or blocking edges. Validate the breakdown yourself against the skill's own slicing rules, then show the user **one screen of plain-language lines** (what each ticket delivers, no technical detail) with a default: «Запускаю через 60 секунд, если не скажешь стоп». Do not wait for explicit approval — waiting is the failure mode this skill exists to remove.
+Follow `to-tickets` (read its file), with two overrides. First, **one ticket must deliver the run instruction** — the plain-language «как это запустить» file. A vibecoder with working code and no idea how to start it has nothing. Second, **skip the user quiz** — a vibecoder cannot judge granularity or blocking edges. Validate the breakdown yourself against the skill's own slicing rules, then show the user **one screen of plain-language lines** (what each ticket delivers, no technical detail) with a default: «Запускаю через 60 секунд, если не скажешь стоп». Do not wait for explicit approval — waiting is the failure mode this skill exists to remove.
 
 ### Phase 4 — Implement (subagent per ticket)
 
@@ -74,8 +74,8 @@ Follow `to-tickets` (read its file), with one override: **skip the user quiz** �
 
 The subagent **cannot load `implement` itself**, so hand it everything inline: the ticket body, the relevant spec sections, paths to existing code, and the body of `implement`'s `SKILL.md` — plus a note that the `/tdd` and `/code-review` it refers to *are* model-invocable, so the subagent should reach them with the Skill tool.
 
-- **One commit per ticket** — commits are the user's rollback points.
-- Unblocked tickets may run in parallel **only when they touch disjoint files**; same files → serialize.
+- **One commit per ticket** — commits are the user's rollback points. A subagent commits **only its own files by path**, never `git add -A`: parallel siblings have half-written files in the tree. On `index.lock` — wait and retry, don't force.
+- Unblocked tickets may run in parallel **only when they touch disjoint files**; same files → serialize. `to-tickets` deliberately keeps file paths out of ticket bodies, so **you** hold the ownership map: hand each subagent the exact list of files it owns and the explicit instruction not to touch anything else. Without that map, «disjoint» is a guess and parallel agents overwrite each other.
 - After each ticket, report **one plain-language line** («Можно загрузить клиентов из файла — 3 из 8 готово»). No diffs, no jargon.
 - Ticket failed → retry **once** in a fresh context with the error attached. Second failure → stop, tell the user in plain language what is blocking and what you need.
 

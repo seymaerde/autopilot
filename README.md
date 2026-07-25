@@ -20,6 +20,8 @@ Autopilot требует пак Мэтта Пакока — поставь ег�
 npx skills add mattpocock/skills
 ```
 
+**После установки перезапусти Claude Code** — скиллы читаются при старте сессии, в текущей `/autopilot` ещё не появится. Проверить просто: набери `/` и найди в списке `autopilot`.
+
 Оба пака ставятся в тот проект, где ты запускаешь команду. Хочешь, чтобы скилл был доступен во всех проектах — добавь флаг `-g`:
 
 ```bash
@@ -96,6 +98,8 @@ Autopilot is an orchestrator on top of [mattpocock/skills](https://github.com/ma
 npx skills add nick-vels/autopilot
 npx skills add mattpocock/skills   # required: grilling, to-spec, to-tickets, implement, tdd, code-review
 ```
+
+**Restart Claude Code after installing** — skills are read at session start, so `/autopilot` won't show up in the session you installed from.
 
 Add `-g` to install globally instead of into the current project.
 

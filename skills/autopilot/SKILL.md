@@ -66,7 +66,7 @@ Follow `to-spec` (read its file — see Phase 0) on the grilling transcript. Thr
 
 ### Phase 3 — Tickets
 
-Follow `to-tickets` (read its file), with two overrides. First, **one ticket must deliver the run instruction** — the plain-language «как это запустить» file. A vibecoder with working code and no idea how to start it has nothing. Second, **skip the user quiz** — a vibecoder cannot judge granularity or blocking edges. Validate the breakdown yourself against the skill's own slicing rules, then show the user **one screen of plain-language lines** (what each ticket delivers, no technical detail) with a default: «Запускаю через 60 секунд, если не скажешь стоп». Do not wait for explicit approval — waiting is the failure mode this skill exists to remove.
+Follow `to-tickets` (read its file), with two overrides. First, **one ticket must deliver the run instruction** — the plain-language «как это запустить» file — and it is **blocked by every other ticket**, so it lands last. A vibecoder with working code and no idea how to start it has nothing; an instruction written while half the tickets are still open describes a product that doesn't exist yet. Second, **skip the user quiz** — a vibecoder cannot judge granularity or blocking edges. Validate the breakdown yourself against the skill's own slicing rules, then show the user **one screen of plain-language lines** (what each ticket delivers, no technical detail) with a default: «Запускаю через 60 секунд, если не скажешь стоп». Do not wait for explicit approval — waiting is the failure mode this skill exists to remove.
 
 ### Phase 4 — Implement (subagent per ticket)
 

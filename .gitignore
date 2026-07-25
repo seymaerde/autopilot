@@ -1,0 +1,8 @@
+# installed skills of other packs (not part of this repo)
+.claude/
+
+# scratch artifacts from pipeline runs
+.scratch/
+
+node_modules/
+.DS_Store

@@ -76,6 +76,7 @@ The subagent **cannot load `implement` itself**, so hand it everything inline: t
 
 - **One commit per ticket** — commits are the user's rollback points. A subagent commits **only its own files by path**, never `git add -A`: parallel siblings have half-written files in the tree. On `index.lock` — wait and retry, don't force.
 - Unblocked tickets may run in parallel **only when they touch disjoint files**; same files → serialize. `to-tickets` deliberately keeps file paths out of ticket bodies, so **you** hold the ownership map: hand each subagent the exact list of files it owns and the explicit instruction not to touch anything else. Without that map, «disjoint» is a guess and parallel agents overwrite each other.
+- **The map protects against collisions, not against a red suite.** A ticket that changes behaviour an earlier ticket pinned in a test owns that test too — tell the subagent to update the stale assertion and report it, not to leave the suite red. Red suite = ticket not done. If the stale test belongs to a ticket still running, the subagent hands it back to you instead of guessing.
 - After each ticket, report **one plain-language line** («Можно загрузить клиентов из файла — 3 из 8 готово»). No diffs, no jargon.
 - Ticket failed → retry **once** in a fresh context with the error attached. Second failure → stop, tell the user in plain language what is blocking and what you need.
 

@@ -1,0 +1,21 @@
+{
+  "name": "nick-vels",
+  "owner": {
+    "name": "Nick Vels"
+  },
+  "description": "Скилл Autopilot как устанавливаемый плагин Claude Code.",
+  "plugins": [
+    {
+      "name": "autopilot",
+      "source": "./",
+      "description": "Доводит продиктованную идею до работающего проекта за один диалог: grill → spec → tickets → implement, по субагенту на тикет.",
+      "category": "engineering",
+      "keywords": [
+        "autopilot",
+        "vibecoding",
+        "spec",
+        "subagents"
+      ]
+    }
+  ]
+}

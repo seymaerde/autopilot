@@ -1,0 +1,21 @@
+{
+  "name": "autopilot",
+  "version": "1.0.0",
+  "description": "Доводит продиктованную идею до работающего проекта за один диалог: grill → spec → tickets → implement, по субагенту на тикет, без ручных подтверждений между этапами.",
+  "author": {
+    "name": "Nick Vels"
+  },
+  "repository": "https://github.com/nick-vels/autopilot",
+  "license": "MIT",
+  "keywords": [
+    "autopilot",
+    "vibecoding",
+    "spec",
+    "tickets",
+    "subagents",
+    "orchestration"
+  ],
+  "skills": [
+    "./skills/autopilot"
+  ]
+}

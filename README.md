@@ -27,6 +27,17 @@ npx skills add nick-vels/autopilot -g
 npx skills add mattpocock/skills -g
 ```
 
+### Второй способ: плагин Claude Code
+
+Если не хочешь держать файл скилла у себя в проекте — поставь его как плагин, он обновляется сам:
+
+```
+/plugin marketplace add nick-vels/autopilot
+/plugin install autopilot@nick-vels
+```
+
+Разница простая: через `npx skills` файл скилла копируется к тебе в проект, и его можно править под себя. Плагин — это подписка: файлы остаются read-only и подтягивают обновления. Скилл при установке плагином вызывается как `/autopilot:autopilot` (имя плагина + имя скилла), через `npx skills` — просто `/autopilot`.
+
 ## Как пользоваться
 
 Открой Claude Code в пустой папке будущего проекта и продиктуй задачу:
@@ -87,6 +98,15 @@ npx skills add mattpocock/skills   # required: grilling, to-spec, to-tickets, im
 ```
 
 Add `-g` to install globally instead of into the current project.
+
+Or install it as a Claude Code plugin — read-only, self-updating:
+
+```
+/plugin marketplace add nick-vels/autopilot
+/plugin install autopilot@nick-vels
+```
+
+Installed via `npx skills` the skill is `/autopilot`; installed as a plugin it is namespaced as `/autopilot:autopilot`.
 
 ### Use
 
